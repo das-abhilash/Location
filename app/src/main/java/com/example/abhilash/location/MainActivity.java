@@ -280,8 +280,12 @@ public class MainActivity extends AppCompatActivity implements
         }
         lc = LocationServices.FusedLocationApi
                 .getLastLocation(mGoogleApiClient);
-        lt1 = lc.getLatitude();
-        ln1 = lc.getLongitude();
+        if (lc != null){
+            lt1 = lc.getLatitude();
+            ln1 = lc.getLongitude();
+
+        }
+
 
     }
 
