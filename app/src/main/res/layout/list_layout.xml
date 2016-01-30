@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="3"
-            android:textSize="24dp"
+            android:textSize="20dp"
 
             />
 
@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="10"
-            android:textSize="18dp"
+            android:layout_weight="303.69"
+            android:textSize="15dp"
             />
     </LinearLayout>
 </LinearLayout>
