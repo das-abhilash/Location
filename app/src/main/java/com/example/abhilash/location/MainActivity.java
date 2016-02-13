@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements
     double ln1;
 
     LocationManager lm;
-    TextView lt, ln;
     Location lc;
 
     String Ljson = "  {\"locations\" :[ {\"name\":\"The Orange Bicycle\",\"latitude\":\"12.969534\",\"longitude\":\"77.638589\"},{\"name\":\"Soch\", \"latitude\":\"13.009485\", \"longitude\":\"77.563375\"},{\"name\":\"Nauchandi\", \"latitude\":\"12.970925\", \"longitude\":\"77.648028\"},{\"name\":\"Smart Gardens\", \"latitude\":\"12.976902\", \"longitude\":\"77.654095\"},{\"name\":\"Kudoz Studio\", \"latitude\":\"12.931713\", \"longitude\":\"77.62835\"},{\"name\":\"United Colors of Benetton\",\"latitude\":\"12.986126\", \"longitude\":\"77.703706\"},{\"name\":\"Bohome\",\"latitude\":\"12.969144\",\"longitude\":\"77.638837\"},{\"name\":\"Studio by Untold Homes\",\"latitude\":\"12.964383\",\"longitude\":\"77.639478\" }, {\"name\":\"ABCD\", \"latitude\":\"12.97965\",\"longitude\":\"77.649147\"},  {\"name\":\"Bata\",   \"latitude\":\"13.009485\",     \"longitude\":\"77.563375\"  }]}";
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements
         lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         Button find = (Button) findViewById(R.id.find);
-
 
 
         find.setOnClickListener(new View.OnClickListener() {
@@ -195,24 +193,8 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public ArrayList<Loc> getData(String locationStr) {
-        //  final String location = "locations";
 
-        ///////////////////////////////////////////
-
-        // change here lt1 & lt2 to lc.getLatitude() & lc.getLongitude()
-
-        /////////////////////////////////
         ArrayList<Loc> Locs = new ArrayList<Loc>();
-
-
-        /*Location l = LocationServices.FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
-        double lt1 =  l.getLatitude(); //12.969534;//
-        double ln1 = l.getLongitude();*/ //77.638589;//
-      /*  ln.setText("" + ln1);
-        lt.setText("" + lt1);
-
-*/
 
         try {
             JSONObject jsonRootObject = new JSONObject(locationStr);
@@ -280,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements
         }
         lc = LocationServices.FusedLocationApi
                 .getLastLocation(mGoogleApiClient);
-        if (lc != null){
+        if (lc != null) {
             lt1 = lc.getLatitude();
             ln1 = lc.getLongitude();
 
@@ -323,6 +305,7 @@ public class MainActivity extends AppCompatActivity implements
                 i.putExtra("latitude", loc.getLatitude());
                 i.putExtra("longitude", loc.getLongitude());
                 i.putExtra("name", loc.getName());
+                i.putExtra("path", loc.getPath());
 
                 startActivity(i);
 

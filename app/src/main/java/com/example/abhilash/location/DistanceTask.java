@@ -1,6 +1,11 @@
 package com.example.abhilash.location;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,12 +22,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Abhilash on 1/30/2016.
  */
-public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { // it'll recieve the location json string as input
-
+public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { // it'll receive the location json string as input
 
 
     private MainActivity mainActivity;
@@ -30,11 +35,6 @@ public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { /
     public DistanceTask(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
-
-
-
-
-
 
 
     @Override
@@ -50,8 +50,7 @@ public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { /
         Locs = mainActivity.getData(params[0]);
 
         InputStream inputStream = null;
-        for (int i = 0;i < Locs.size();i++){
-
+        for (int i = 0; i < Locs.size(); i++) {
 
             // here i m using http
             try {
@@ -93,23 +92,24 @@ public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { /
             Locs.get(i).setJson(disStr);
 
         }
-
         return Locs;
     }
-
 
 
     @Override
     protected void onPostExecute(ArrayList<Loc> Locs) {
 
 
-        for (int i = 0; i < Locs.size(); i++){
+        for (int i = 0; i < Locs.size(); i++) {
 
             try {
                 JSONObject distJsn = new JSONObject(Locs.get(i).getJson());
                 JSONArray routesArray = distJsn.getJSONArray("routes");
 
                 JSONObject c = routesArray.getJSONObject(0);
+                JSONObject overviewPolylines = c.getJSONObject("overview_polyline");
+                String encodedString = overviewPolylines.getString("points");
+                Locs.get(i).setPath(encodedString);
 
                 JSONArray legsArray = c.getJSONArray("legs");
 
@@ -119,7 +119,7 @@ public class DistanceTask extends AsyncTask<String, Integer, ArrayList<Loc>> { /
 
                 double dist = Double.parseDouble(String.valueOf(distance.getInt("value")));
 
-                Locs.get(i).setDistance(dist/1000);
+                Locs.get(i).setDistance(dist / 1000);
                 //String text = distance.getString("text");
 
 

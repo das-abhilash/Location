@@ -10,6 +10,8 @@ public class Loc {
     private double distance;
     private String Url;
     private String json;
+    private String path;
+
     public String getName() {
         return name;
     }
@@ -41,6 +43,7 @@ public class Loc {
     public void setDistance(double distance) {
         this.distance = distance;
     }
+
     public String getUrl() {
         return Url;
     }
@@ -55,5 +58,13 @@ public class Loc {
 
     public void setJson(String json) {
         this.json = json;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

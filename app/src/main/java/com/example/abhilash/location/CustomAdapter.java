@@ -19,7 +19,7 @@ public class CustomAdapter extends ArrayAdapter<Loc> {
 
 
     public CustomAdapter(Context context, ArrayList<Loc> locs) {
-        super( context, R.layout.list_layout,  locs);
+        super(context, R.layout.list_layout, locs);
         this.locs = locs;
     }
 
@@ -35,7 +35,7 @@ public class CustomAdapter extends ArrayAdapter<Loc> {
 
         double dist = (loc.getDistance());
 
-        locationText.setText( " : " + f.format(dist) + "k.m." + " away" );
+        locationText.setText(" : " + f.format(dist) + "k.m." + " away");
 
         TextView locationName = (TextView) customView.findViewById(R.id.locationName);
 
